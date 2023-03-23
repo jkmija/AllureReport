@@ -1,0 +1,140 @@
+buildscript {
+    repositories {
+        maven {
+            url "https://plugins.gradle.org/m2/"
+        }
+    }
+}
+
+plugins {
+    id 'java'
+    id "com.github.spacialcircumstances.gradle-cucumber-reporting" version "0.1.18"
+    // Apply the application plugin to add support for building a CLI application in Java.
+    id 'io.qameta.allure' version '2.11.0'
+}
+
+group 'test'
+version '1.0'
+sourceCompatibility = 1.11
+
+repositories {
+    mavenCentral()
+}
+
+dependencies {
+
+
+    // [MV] Apache Log4j.
+    implementation group: 'log4j', name: 'log4j', version: '1.2.17'
+
+    // [MV] Cucumber dependencies.
+    testImplementation group: 'io.cucumber', name: 'cucumber-java', version: '7.0.0'
+    testImplementation group: 'io.cucumber', name: 'cucumber-picocontainer', version: '7.0.0'
+    testImplementation group: 'io.cucumber', name: 'cucumber-testng', version: '7.0.0'
+
+    // [MV] Extent Reports dependencies.
+    implementation group: 'tech.grasshopper', name: 'extentreports-cucumber7-adapter', version: '1.1.0'
+    implementation group: 'com.aventstack', name: 'extentreports', version: '5.0.9'
+    // Allure
+    implementation group: 'io.qameta.allure', name: 'allure-cucumber7-jvm', version: '2.17.0'
+    runtimeOnly 'org.aspectj:aspectjweaver:1.9.19'
+}
+
+// Task to define arguments and configurations to properties file.
+tasks.withType(Test) {
+
+    // [MV] Enable TestNG support (as default is JUnit).
+    useTestNG()
+
+    // [MV] Define the custom properties to run the regression.
+//    systemProperty "baseUrl", baseUrl
+//    systemProperty "browserType", browserType
+}
+
+configurations {
+    cucumberRuntime {
+        extendsFrom testImplementation
+    }
+}
+
+
+// Task to execute the features.
+task executeFeatures(type: Test) {
+    doFirst {
+        useTestNG()
+        options {
+            useDefaultListeners = false
+            jvmArgs = ['-Dcucumber.options= ' +
+                               '-- features ' +
+                               '--glue com.jalasoft.buildtools, src/test/resources/features' +
+
+                               '--plugin pretty' +
+                               '--plugin json:cucumber.json' +
+                               '--plugin rerun:build/cucumber/rerun.txt' +
+                               cucumberOptions]
+        }
+    }
+    scanForTestClasses = false
+    ignoreFailures = true
+}
+
+task runTest(type: Test) {
+    dependsOn assemble, testClasses
+    doFirst {
+        javaexec {
+            systemProperty("allure.results.directory", "build/allure-results")
+            main = "io.cucumber.core.cli.Main"
+            classpath = configurations.cucumberRuntime + sourceSets.main.output + sourceSets.test.output
+            args = ['--plugin', 'pretty',
+                    '--plugin', 'io.qameta.allure.cucumber7jvm.AllureCucumber7Jvm',
+                    '--plugin', 'json:build/cucumber/cucumber.json',
+                    '--plugin','rerun:build/cucumber/rerun.txt',
+                    '--glue', 'steps', 'src/test/resources/features', '--tags', cucumberOptions]
+        }
+    }
+}
+
+// Task to re execute the failed scenarios using rerun.txt file.
+task reExecuteFeatures(type: Test) {
+    File failedScenariosFile = new File("build/cucumber/rerun.txt")
+    if (failedScenariosFile.exists() && !failedScenariosFile.getText().isEmpty()) {
+        useTestNG()
+        options {
+            useDefaultListeners = false
+            jvmArgs = ['-Dcucumber.options=' +
+                               '@build/cucumber/rerun.txt ' +
+                               '--glue com.jalasoft.buildtools' +
+                               '--plugin pretty ' +
+                               '--plugin json:build/cucumber/retry/cucumber.json ' +
+                               '--plugin rerun:build/cucumber/retry/rerun.txt ']
+        }
+    }
+    scanForTestClasses = false
+    ignoreFailures = true
+}
+
+
+cucumberReports() {
+        File testFile = new File('/build/cucumber/cucumber.json');
+        projectNameOverride = 'BuildTools'
+        outputDir = file('build/cucumber/reports')
+        buildId = '1.0'
+        reports = files('build/cucumber/cucumber.json')
+        if (testFile.exists()) {
+
+            testTasksFinalizedByReport = true
+            println 'Test File Exists'
+        } else {
+
+
+            testTasksFinalizedByReport = false
+            println 'Test no File Exists'
+        }
+
+}
+
+allure {
+    version = '2.11.0'
+    autoconfigure = true
+}
+

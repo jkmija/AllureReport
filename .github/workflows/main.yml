@@ -37,7 +37,9 @@ jobs:
       - name: Install Google Firefox
         uses: browser-actions/setup-firefox@v1
       - run: firefox --version
-      
+
+      - name: Branch name
+        run: echo running on branch ${GITHUB_REF##*/}
 #  build:
 #    needs: setup
  #   runs-on: self-hosted

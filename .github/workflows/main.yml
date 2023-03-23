@@ -27,7 +27,7 @@ jobs:
           server-id: github 
           settings-path: ${{ github.workspace }} 
         
-      #- name: Install Google Chrome
+      - name: Install Google Chrome
       - uses: browser-actions/setup-chrome@v1
       - run: chrome --version
                           

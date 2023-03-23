@@ -14,4 +14,8 @@ public class StringUtils {
   public static String getNumbersFromText(String value) {
     return value.replaceAll("\\D", "");
   }
+
+  public static String GetonlyText(String value) {
+    return value.replaceAll("\\w", "");
+  }
 }

@@ -83,7 +83,7 @@ jobs:
           description: 'Passed'
           state: 'success'
           sha: ${{github.event.pull_request.head.sha || github.sha}}
-          target_url: simple-elf.github.io/github-allure-history/${{ github.run_number }}
+#           target_url: simple-elf.github.io/github-allure-history/${{ github.run_number }}
 
     #- uses: actions/upload-artifact@v3
      # with:

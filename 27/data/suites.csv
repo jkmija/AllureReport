@@ -1,0 +1,2 @@
+"Status","Start Time","Stop Time","Duration in ms","Parent Suite","Suite","Sub Suite","Test Class","Test Method","Name","Description"
+"passed","Fri Mar 24 03:24:01 GMT 2023","Fri Mar 24 03:24:01 GMT 2023","27","","Common Utils String","","Verifies if get a Integer from a number","","Verifies if get a Integer from a number",""

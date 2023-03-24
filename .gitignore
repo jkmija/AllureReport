@@ -1,9 +1,0 @@
-### Gradle ###
-.gradle
-build/
-
-# IntelliJ
-.idea/
-out/
-*.iml
-/allure-results/

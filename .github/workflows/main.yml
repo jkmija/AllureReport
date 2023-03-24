@@ -27,16 +27,16 @@ jobs:
           server-id: github 
           settings-path: ${{ github.workspace }} 
         
-      - name: Install Google Chrome
-        uses: browser-actions/setup-chrome@v1
-      - run: chrome --version
+#      - name: Install Google Chrome
+#        uses: browser-actions/setup-chrome@v1
+#      - run: chrome --version
                           
       - name: Grant execute permission for gradlew
         run: chmod +x gradlew
 
-      - name: Install Google Firefox
-        uses: browser-actions/setup-firefox@v1
-      - run: firefox --version
+#      - name: Install Google Firefox
+#        uses: browser-actions/setup-firefox@v1
+#      - run: firefox --version
 
       - name: Branch name
         run: echo running on branch ${GITHUB_REF##*/}
@@ -69,7 +69,7 @@ jobs:
       - name: Deploy report to Github Pages
         if: always()
         uses: peaceiris/actions-gh-pages@v3.7.3
-        env:
+        with:
           github_token: ${{ secrets.GITHUB_TOKEN }}
           deploy_key: ${{ secrets.ACTIONS_DEPLOY_KEY }}
           PUBLISH_BRANCH: gh-pages

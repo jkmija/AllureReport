@@ -1,0 +1,1 @@
+{"1fd7b1d94ecf3af13b3f9323e2917587":{"statistic":{"failed":0,"broken":0,"skipped":0,"passed":1,"unknown":0,"total":1},"items":[{"uid":"fc10f26b21a12cb7","reportUrl":"https://jkmija.github.io/AllureReport/30//#testresult/fc10f26b21a12cb7","status":"passed","time":{"start":1679629395978,"stop":1679629396005,"duration":27}}]}}

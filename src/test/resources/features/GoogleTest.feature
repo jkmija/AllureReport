@@ -9,6 +9,6 @@ Feature: Google test
 
 
   @Test-3
-  Scenario: Verifies Google page is displayed
+  Scenario: Verifies Google page is displayed in Firefox browser
     And I open Google page in Firefox
     And the Title on Google page in Firefox should be "Googlex"

@@ -17,22 +17,22 @@ public class ChromeBrowser {
   }
 
   WebDriver driver;
-  public ChromeBrowser(){
+
+  public ChromeBrowser() {
     WebDriverManager.chromedriver().setup();
     driver = new ChromeDriver(getChromeOptions());
-    driver.manage().window().setSize(new Dimension(1920,1080));
+    driver.manage().window().setSize(new Dimension(1920, 1080));
   }
 
-  public void openGoogle()
-  {
+  public void openGoogle() {
     driver.get("https://www.google.com/");
   }
 
-  public String getTitle(){
+  public String getTitle() {
     return driver.getTitle();
   }
 
-  public void closeChrome(){
+  public void closeChrome() {
     driver.close();
   }
 

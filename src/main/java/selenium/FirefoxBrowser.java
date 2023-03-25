@@ -1,35 +1,30 @@
 package selenium;
 
 import io.github.bonigarcia.wdm.WebDriverManager;
-import java.util.HashMap;
-import java.util.Map;
 import org.openqa.selenium.Dimension;
 import org.openqa.selenium.WebDriver;
-import org.openqa.selenium.chrome.ChromeDriver;
-import org.openqa.selenium.chrome.ChromeOptions;
 import org.openqa.selenium.firefox.FirefoxDriver;
 import org.openqa.selenium.firefox.FirefoxOptions;
-import org.openqa.selenium.remote.CapabilityType;
-import org.openqa.selenium.remote.DesiredCapabilities;
 
 public class FirefoxBrowser {
+
   WebDriver driver;
-  public FirefoxBrowser(){
+
+  public FirefoxBrowser() {
     WebDriverManager.firefoxdriver().setup();
     driver = new FirefoxDriver(getFirefoxOptions());
-    driver.manage().window().setSize(new Dimension(1920,1080));
+    driver.manage().window().setSize(new Dimension(1920, 1080));
   }
 
-  public void openGoogle()
-  {
+  public void openGoogle() {
     driver.get("https://www.google.com/");
   }
 
-  public String getTitle(){
+  public String getTitle() {
     return driver.getTitle();
   }
 
-  public void closeChrome(){
+  public void closeChrome() {
     driver.close();
   }
 

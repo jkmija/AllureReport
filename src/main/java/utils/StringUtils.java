@@ -1,7 +1,9 @@
 package utils;
 
 public class StringUtils {
-  private StringUtils(){}
+
+  private StringUtils() {
+  }
 
   /**
    * Gets only numbers from text.

@@ -54,8 +54,8 @@ jobs:
       - name: Execute Chrome Scenarios
         run: ./gradlew clean runTest -PcucumberOptions=@${GITHUB_HEAD_REF}
 
-          - name: Execute FireFox Scenarios
-              run: ./gradlew runTest -PcucumberOptions=@Test-3
+      - name: Execute FireFox Scenarios
+        run: ./gradlew runTest -PcucumberOptions=@Test-3
 
       - name: Test marketplace action
         uses: simple-elf/allure-report-action@master

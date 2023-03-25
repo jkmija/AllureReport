@@ -43,8 +43,8 @@ public class UtilsSteps {
   /**
    * Test Adds
    */
-  @After(order = 0)
-  public void takeScraenshotOnFailure(Scenario scenario) {
+  @After(value = "@TakesScreenshotChrome",order = 0)
+  public void takesScreenshotOnFailure(Scenario scenario) {
     byte[] src = null;
     if (scenario.isFailed()) {
 
@@ -54,6 +54,5 @@ public class UtilsSteps {
       scenario.attach(src, "image/png", "screenshot");
       Allure.addAttachment("Error", new ByteArrayInputStream(src));
     }
-
   }
 }

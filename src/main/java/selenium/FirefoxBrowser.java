@@ -8,6 +8,10 @@ import org.openqa.selenium.firefox.FirefoxOptions;
 
 public class FirefoxBrowser {
 
+  public WebDriver getDriver() {
+    return driver;
+  }
+
   WebDriver driver;
 
   public FirefoxBrowser() {

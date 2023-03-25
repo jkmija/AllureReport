@@ -37,7 +37,7 @@ jobs:
 #      - run: firefox --version
 
       - name: Branch name
-        run: echo running on branch ${GITHUB_REF##*/}
+        run: echo running on branch ${{ github.ref_name }}
 #  build:
 #    needs: setup
  #   runs-on: self-hosted
@@ -52,7 +52,7 @@ jobs:
       #with:
        # arguments: build
       - name: Execute Scenarios
-        run: ./gradlew clean runTest -PcucumberOptions=@${GITHUB_REF##*/}
+        run: ./gradlew clean runTest -PcucumberOptions=@${{ github.ref_name }}
 
       - name: Test marketplace action
         uses: simple-elf/allure-report-action@master

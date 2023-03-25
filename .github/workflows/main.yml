@@ -37,7 +37,7 @@ jobs:
 #      - run: firefox --version
 
       - name: Branch name
-        run: echo running on branch ${{ github.ref_name }}
+        run: echo "Deploying to production server on branch $GITHUB_REF"
 #  build:
 #    needs: setup
  #   runs-on: self-hosted

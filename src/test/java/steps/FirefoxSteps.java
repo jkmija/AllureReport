@@ -22,6 +22,7 @@ public class FirefoxSteps {
   @And("I open Google page in Firefox")
   public void openGooglePageInFirefox() {
     firefoxBrowser = new FirefoxBrowser();
+    firefoxBrowser.openGoogle();
   }
 
   @And("the Title on Google page in Firefox should be {string}")

@@ -1,1 +1,1 @@
-{"uid":"98d3104e051c652961429bf95fa0b5d6","children":[],"name":"suites"}
+{"uid":"98d3104e051c652961429bf95fa0b5d6","children":[{"name":"Google test","children":[{"name":"Verifies Google page is displayed","uid":"1e7982bd8a76c958","parentUid":"cb7cdb3b2b01fc3bd028ee91120e91d4","status":"failed","time":{"start":1679717212988,"stop":1679717218543,"duration":5555},"flaky":false,"newFailed":false,"newPassed":false,"newBroken":false,"retriesCount":0,"retriesStatusChange":false,"parameters":[]}],"uid":"cb7cdb3b2b01fc3bd028ee91120e91d4"}],"name":"suites"}

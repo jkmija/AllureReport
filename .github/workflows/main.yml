@@ -52,7 +52,7 @@ jobs:
       #with:
        # arguments: build
       - name: Execute Scenarios
-        run: ./gradlew clean runTest -PcucumberOptions=@${{ github.ref_name }}
+        run: ./gradlew clean runTest -PcucumberOptions=@${GITHUB_HEAD_REF}
 
       - name: Test marketplace action
         uses: simple-elf/allure-report-action@master

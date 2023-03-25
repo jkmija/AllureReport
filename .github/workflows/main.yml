@@ -8,8 +8,7 @@
 name: Java CI with Gradle
 
 on:
-  push:
-    branches: "main"
+  push: [pull_request]
 
   workflow_dispatch:
   
@@ -54,7 +53,7 @@ jobs:
       #with:
        # arguments: build
       - name: Execute Scenarios
-        run: ./gradlew clean runTest -PcucumberOptions=@Test-1
+        run: ./gradlew clean runTest -PcucumberOptions=@${GITHUB_REF##*/}
 
       - name: Test marketplace action
         uses: simple-elf/allure-report-action@master

@@ -22,7 +22,11 @@ repositories {
 }
 
 dependencies {
+    // [MV] Selenium (Updated to Selenium 4 to use new Edge Options).
+    implementation group: 'org.seleniumhq.selenium', name: 'selenium-java', version: '4.0.0'
 
+    // [MV] Selenium WebDriver binaries.
+    implementation group: 'io.github.bonigarcia', name: 'webdrivermanager', version: '5.1.0'
 
     // [MV] Apache Log4j.
     implementation group: 'log4j', name: 'log4j', version: '1.2.17'
@@ -120,16 +124,16 @@ cucumberReports() {
         outputDir = file('build/cucumber/reports')
         buildId = '1.0'
         reports = files('build/cucumber/cucumber.json')
-        if (testFile.exists()) {
-
-            testTasksFinalizedByReport = true
-            println 'Test File Exists'
-        } else {
-
-
-            testTasksFinalizedByReport = false
-            println 'Test no File Exists'
-        }
+//        if (testFile.exists()) {
+//
+//            testTasksFinalizedByReport = true
+//            println 'Test File Exists'
+//        } else {
+//
+//
+//            testTasksFinalizedByReport = false
+//            println 'Test no File Exists'
+//        }
 
 }
 

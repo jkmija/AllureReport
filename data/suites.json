@@ -1,1 +1,1 @@
-{"uid":"98d3104e051c652961429bf95fa0b5d6","children":[{"name":"Common Utils String","children":[{"name":"Verifies if get a Integer from a number","uid":"fc10f26b21a12cb7","parentUid":"327144fd76aabf6697b8a1d84e039229","status":"passed","time":{"start":1679629395978,"stop":1679629396005,"duration":27},"flaky":false,"newFailed":false,"newPassed":false,"newBroken":false,"retriesCount":0,"retriesStatusChange":false,"parameters":[]}],"uid":"327144fd76aabf6697b8a1d84e039229"}],"name":"suites"}
+{"uid":"98d3104e051c652961429bf95fa0b5d6","children":[],"name":"suites"}

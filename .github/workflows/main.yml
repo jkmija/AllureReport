@@ -51,8 +51,11 @@ jobs:
      # uses: gradle/gradle-build-action@67421db6bd0bf253fb4bd25b31ebb98943c375e1
       #with:
        # arguments: build
-      - name: Execute Scenarios
+      - name: Execute Chrome Scenarios
         run: ./gradlew clean runTest -PcucumberOptions=@${GITHUB_HEAD_REF}
+
+          - name: Execute FireFox Scenarios
+              run: ./gradlew runTest -PcucumberOptions=@Test-3
 
       - name: Test marketplace action
         uses: simple-elf/allure-report-action@master

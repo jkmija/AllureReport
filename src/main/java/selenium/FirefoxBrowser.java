@@ -47,9 +47,9 @@ public class FirefoxBrowser {
         // [MV] Sets Preference to not open the Pdf files.
         .addPreference("pdfjs.disabled", true);
 //    firefoxOptions.setHeadless(true);
-//    firefoxOptions.addArguments("--headless");
-    firefoxOptions.addArguments("--width=1920");
-    firefoxOptions.addArguments("--height=1080");
+    firefoxOptions.addArguments("--headless");
+//    firefoxOptions.addArguments("--width=1920");
+//    firefoxOptions.addArguments("--height=1080");
 //    firefoxOptions.addPreference("layout.css.devPixelsPerPx", "0.65");
     return firefoxOptions;
   }

@@ -37,7 +37,7 @@ jobs:
 #      - run: firefox --version
 
       - name: Branch name
-          run: echo "##[set-output name=branch;]$(echo ${GITHUB_REF#refs/heads/})"
+        run: echo "Deploying to production server on branch ${GITHUB_HEAD_REF}"
 #  build:
 #    needs: setup
  #   runs-on: self-hosted

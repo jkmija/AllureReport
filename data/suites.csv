@@ -1,0 +1,3 @@
+"Status","Start Time","Stop Time","Duration in ms","Parent Suite","Suite","Sub Suite","Test Class","Test Method","Name","Description"
+"failed","Thu Apr 13 02:27:30 GMT 2023","Thu Apr 13 02:27:35 GMT 2023","4540","","Google test","","Verifies Google page is displayed","","Verifies Google page is displayed",""
+"failed","Thu Apr 13 02:27:39 GMT 2023","Thu Apr 13 02:27:43 GMT 2023","4171","","Google test","","Verifies Google page is displayed in Firefox browser","","Verifies Google page is displayed in Firefox browser",""

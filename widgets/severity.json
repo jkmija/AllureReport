@@ -1,1 +1,1 @@
-[]
+[{"uid":"7e9e3e9b3c21134d","name":"Verifies Google page is displayed","time":{"start":1681352850716,"stop":1681352855256,"duration":4540},"status":"failed","severity":"normal"},{"uid":"64cd8172fc7327a8","name":"Verifies Google page is displayed in Firefox browser","time":{"start":1681352859251,"stop":1681352863422,"duration":4171},"status":"failed","severity":"normal"}]

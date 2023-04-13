@@ -25,8 +25,8 @@ jobs:
           server-id: github 
           settings-path: ${{ github.workspace }} 
         
-#      - name: Install Google Chrome
-#        uses: browser-actions/setup-chrome@v1
+      - name: Install Google Chrome
+        uses: browser-actions/setup-chrome@v1
       - run: chrome --version
                           
       - name: Grant execute permission for gradlew

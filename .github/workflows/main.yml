@@ -52,7 +52,7 @@ jobs:
       #with:
        # arguments: build
       - name: Execute Chrome Scenarios
-        run: ./gradlew clean runTest -PcucumberOptions=@${GITHUB_HEAD_REF}
+        run: ./gradlew clean runTest -PcucumberOptions=@${{ GITHUB_HEAD_REF }}
 
       - name: Execute FireFox Scenarios
         if: always()
@@ -75,7 +75,7 @@ jobs:
           github_token: ${{ secrets.GITHUB_TOKEN }}
           PUBLISH_BRANCH: gh-pages
           PUBLISH_DIR: allure-history
-
+ 
       - name: Post the link to the report
         if: always()
         uses: Sibz/github-status-action@v1
@@ -86,6 +86,13 @@ jobs:
           state: 'success'
           sha: ${{github.event.pull_request.head.sha || github.sha}}
 #           target_url: simple-elf.github.io/github-allure-history/${{ github.run_number }}
+
+      - name: Upload Artifact
+        uses: actions/upload-artifact@v3
+        with:
+          name: allure_Results
+          path: build/allure-results
+          retention-days: 1
 
     #- uses: actions/upload-artifact@v3
      # with:

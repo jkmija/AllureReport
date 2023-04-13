@@ -1,0 +1,1 @@
+[{"uid":"90ca19dd414a4f9e","name":"Verifies Google page is displayed in Firefox browser","time":{"start":1681358159843,"stop":1681358164550,"duration":4707},"status":"failed","severity":"normal"},{"uid":"fe5f45ea3e3a1a7f","name":"Verifies Google page is displayed","time":{"start":1681358151963,"stop":1681358155884,"duration":3921},"status":"failed","severity":"normal"}]

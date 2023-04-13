@@ -7,11 +7,9 @@
 
 name: Java CI with Gradle
 
-on:
-  push:
-    branches: "main"
+on: pull_request
 
-  workflow_dispatch:
+
   
 jobs:
   setup:
@@ -27,25 +25,25 @@ jobs:
           server-id: github 
           settings-path: ${{ github.workspace }} 
         
-#      - name: Install Google Chrome
-#        uses: browser-actions/setup-chrome@v1
-#      - run: chrome --version
+      - name: Install Google Chrome
+        uses: browser-actions/setup-chrome@v1
+      - run: chrome --version
                           
       - name: Grant execute permission for gradlew
         run: chmod +x gradlew
 
-#      - name: Install Google Firefox
-#        uses: browser-actions/setup-firefox@v1
-#      - run: firefox --version
+      - name: Install Google Firefox
+        uses: browser-actions/setup-firefox@v1
+      - run: firefox --version
 
       - name: Branch name
-        run: echo running on branch ${GITHUB_REF##*/}
+        run: echo "Deploying to production server on branch ${GITHUB_HEAD_REF}"
 #  build:
 #    needs: setup
  #   runs-on: self-hosted
  #   steps:
-      - name: Execute task
-        run: ./gradlew clean build
+#      - name: Execute task
+#        run: ./gradlew clean build
      #- name: Validate Gradle wrapper
      # uses: gradle/wrapper-validation-action@e6e38bacfdf1a337459f332974bb2327a31aaf4b
     
@@ -53,18 +51,22 @@ jobs:
      # uses: gradle/gradle-build-action@67421db6bd0bf253fb4bd25b31ebb98943c375e1
       #with:
        # arguments: build
-      - name: Execute Scenarios
-        run: ./gradlew clean runTest -PcucumberOptions=@Test-1
+      - name: Execute Chrome Scenarios
+        run: ./gradlew clean runTest -PcucumberOptions="@${GITHUB_HEAD_REF}"
+
+      - name: Execute FireFox Scenarios
+        if: always()
+        run: ./gradlew runTest -PcucumberOptions=@Test-3
 
       - name: Test marketplace action
         uses: simple-elf/allure-report-action@master
         if: always()
-        id: allure-report
+#         id: allure-report
         with:
           allure_results: build/allure-results
-          gh_pages: gh-pages
-          allure_report: allure-report
-#           allure_history: allure-history
+#           gh_pages: gh-pages
+#           allure_report: allure-report
+          allure_history: allure-history
 
       - name: Deploy report to Github Pages
         if: always()
@@ -72,8 +74,8 @@ jobs:
         with:
           github_token: ${{ secrets.GITHUB_TOKEN }}
           PUBLISH_BRANCH: gh-pages
-          PUBLISH_DIR: allure-report
-
+          PUBLISH_DIR: allure-history
+ 
       - name: Post the link to the report
         if: always()
         uses: Sibz/github-status-action@v1
@@ -84,6 +86,14 @@ jobs:
           state: 'success'
           sha: ${{github.event.pull_request.head.sha || github.sha}}
 #           target_url: simple-elf.github.io/github-allure-history/${{ github.run_number }}
+
+      - name: Upload Artifact
+        if: always()
+        uses: actions/upload-artifact@v3
+        with:
+          name: allure_Results
+          path: build/allure-results
+          retention-days: 1
 
     #- uses: actions/upload-artifact@v3
      # with:
